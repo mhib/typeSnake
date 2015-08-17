@@ -28,6 +28,7 @@ describe("Snake", function() {
           spyOn(b.square, "unbone")
           snake.move()
           expect(b.square.unbone).not.toHaveBeenCalled()
+          expect(snake.lost).toBe(false)
         })
       })
 
@@ -39,7 +40,25 @@ describe("Snake", function() {
           spyOn(b.square, "unbone")
           snake.move()
           expect(b.square.unbone).toHaveBeenCalled()
+          expect(snake.lost).toBe(false)
         })
+
+        describe("has same length as board", function() {
+          it("does not lose", function() {
+            snake.direction = 'right'
+            for(var n = 1; n <= 5; n += 1) { new Bone(snake, Board.find(n, 1)) }
+            snake.move()
+            expect(snake.lost).toBe(false)
+          })
+        })
+      })
+    })
+
+    describe("lost", function() {
+      it("loses", function() {
+        for(var n = 3; n >= 1; n -= 1) { new Bone(snake, Board.find(n, 1)) }
+        snake.move()
+        expect(snake.lost).toBe(true)
       })
     })
   })

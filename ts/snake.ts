@@ -25,18 +25,18 @@ class Snake {
     var eaten = false
     var n_c = this.head().new_coords()
     var new_square = Board.find(n_c["x"], n_c["y"])
-    if (new_square.snake) {
-      return this.lose()
-    }
     if (new_square.food) {
       new_square.unfood()
       eaten = true
       Board.addFood()
     }
+    if (!eaten) {
+      this.popLast()
+    }
+    if (new_square.snake) {
+      return this.lose()
+    }
     new Bone(this, new_square)
-      if (!eaten) {
-        this.popLast()
-      }
   }
 
   set direction(dir: string) {

@@ -23,4 +23,14 @@ describe("Bone", function() {
       })
     })
   })
+
+  describe("isHead", function() {
+    it("checks if bone is head", function() {
+      var s = new Snake
+      var b = new Bone(snake, Board.find(1, 1))
+      expect(b.isHead()).toBe(true)
+      new Bone(snake, Board.find(1, 2))
+      expect(b.isHead()).toBe(false)
+    })
+  })
 })

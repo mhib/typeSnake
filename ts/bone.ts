@@ -35,7 +35,11 @@ class Bone {
     return this.snake.head() === this
   }
 
-  unhead() {
+  unhead() : void {
     this.square.unhead()
+  }
+
+  unbone() : void {
+    this.square.unbone()
   }
 }
