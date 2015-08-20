@@ -40,6 +40,10 @@ document.addEventListener('keydown', function(e) {
   }
 })
 setInterval(function() {
+  if(!snake.lost) {
   snake.move()
+  } else {
+    return ;
+  }
 }, 100)
 
