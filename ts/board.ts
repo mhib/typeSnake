@@ -8,8 +8,8 @@ class Board {
   }
   static SIZE = 50;
   static NUMBER_OF_CELLS = Math.pow(Board.SIZE, 2)
-    static matrix: Array<Array<Square>>
-    static paused = false
+  static matrix: Array<Array<Square>>
+  static paused = false
 
     static prepare_matrix() : void {
       Board.matrix = [];
@@ -23,8 +23,8 @@ class Board {
 
   static find(x: number, y: number) : Square {
     x = Board.transform(x)
-      y = Board.transform(y)
-      return Board.matrix[y][x]
+    y = Board.transform(y)
+    return Board.matrix[y][x]
   }
 
   static transform(x: number) : number {

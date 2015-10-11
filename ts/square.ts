@@ -4,6 +4,7 @@ class Square {
   div: Element
   snake: boolean
   food: boolean
+
   constructor(x, y, div = null) {
     this.x = x
     this.y = y
@@ -12,35 +13,35 @@ class Square {
     this.food = false
   }
 
-  coords() {
+  coords() : Object {
     return { x: this.x, y: this.y }
   }
 
-  bone() {
+  bone() : void {
     this.div.classList.add("bone")
     this.snake = true
   }
 
-  unbone() {
+  unbone() : void {
     this.div.classList.remove("bone")
     this.snake = false
   }
 
-  makeFood() {
+  makeFood() : void {
     this.div.classList.add("food")
     this.food = true
   }
 
-  unfood() {
+  unfood() : void {
     this.div.classList.remove("food")
     this.food = false
   }
 
-  head() {
+  head() : void {
     this.div.classList.add("head")
   }
 
-  unhead() {
+  unhead() :void {
     this.div.classList.remove("head")
   }
 }
