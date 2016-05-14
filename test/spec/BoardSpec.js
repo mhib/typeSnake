@@ -25,7 +25,7 @@ describe("Board", function() {
 
   })
 
-  describe("add_food", function() {
+  describe("addFood", function() {
     it("adds food", function() {
       expect(document.querySelectorAll(".food").length).toEqual(0)
       Board.addFood()

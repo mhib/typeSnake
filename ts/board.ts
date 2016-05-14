@@ -10,16 +10,17 @@ class Board {
   static NUMBER_OF_CELLS = Math.pow(Board.SIZE, 2)
   static matrix: Array<Array<Square>>
   static paused = false
+  static snake
 
-    static prepare_matrix() : void {
-      Board.matrix = [];
-      for(var y = 1; y <= Board.SIZE; y += 1) {
-        Board.matrix[y] = []
-          for(var x = 1; x <= Board.SIZE; x += 1) {
-            Board.matrix[y][x] = new Square(x, y, document.querySelector(".square-" + x + "-" + y))
-          }
-      }
+  static prepareMatrix() : void {
+    Board.matrix = [];
+    for(var y = 1; y <= Board.SIZE; y += 1) {
+      Board.matrix[y] = []
+        for(var x = 1; x <= Board.SIZE; x += 1) {
+          Board.matrix[y][x] = new Square(x, y, document.querySelector(".square-" + x + "-" + y))
+        }
     }
+  }
 
   static find(x: number, y: number) : Square {
     x = Board.transform(x)
@@ -63,7 +64,7 @@ class Board {
     }
   }
 
-  static refresh_food() : void {
+  static refreshFood() : void {
     var food = document.querySelector(".food")
     Board.find(+food.getAttribute("data-x"), +food.getAttribute("data-y")).makeFood()
   }

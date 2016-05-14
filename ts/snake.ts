@@ -53,16 +53,14 @@ class Snake {
     if (this.direction === dir) {
       return false
     }
-    if (dir === Board.OPPOSITE_DIRECTION[dir]) {
+    if (dir === Board.OPPOSITE_DIRECTION[this._direction]) {
       return false
     }
     return true
   }
 
   popLast() : void {
-    var bone = this.bones[this.bones.length - 1]
-    this.bones.pop()
-    bone.square.unbone()
+    this.bones.pop().unbone()
   }
 
   lose() : void {
@@ -71,5 +69,22 @@ class Snake {
 
   won() : boolean {
     return this.bones.length == Board.NUMBER_OF_CELLS
+  }
+
+  serialize() : Object {
+    return {
+      bones: this.bones.map(function(bone) { return bone.coords() }),
+      lost: this.lost,
+      direction:this.direction
+    }
+  }
+
+  static loadFromMap(map: Object) : Snake {
+    var snake = new Snake(map["direction"])
+    snake.lost = map["lost"]
+    map["bones"].reverse().forEach(function(bone) {
+      new Bone(snake, Board.find(bone['x'], bone['y']))
+    })
+    return snake
   }
 }

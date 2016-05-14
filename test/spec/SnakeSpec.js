@@ -1,7 +1,7 @@
 describe("Snake", function() {
   var snake;
   beforeEach(function() {
-    snake = new Snake
+    snake = new Snake("right")
   })
 
   describe("initialization", function() {
@@ -15,6 +15,17 @@ describe("Snake", function() {
     it("loses", function() {
       snake.lose()
       expect(snake.lost).toBe(true)
+    })
+  })
+
+  describe("changing direction", function() {
+    it("changes direction when it is valid", function() {
+      snake.direction = "up"
+      expect(snake.direction).toBe("up")
+    })
+    it("does not change direction when it is invalid", function() {
+      snake.direction = "left"
+      expect(snake.direction).toBe("right")
     })
   })
 
