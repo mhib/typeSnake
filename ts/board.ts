@@ -6,34 +6,35 @@ class Board {
     up: 'down',
     down: 'up'
   }
-  static SIZE = 50;
-  static NUMBER_OF_CELLS = Math.pow(Board.SIZE, 2)
+  static WIDTH = 50;
+  static LENGTH = 50;
+  static NUMBER_OF_CELLS = Board.WIDTH * Board.LENGTH
   static matrix: Array<Array<Square>>
   static paused = false
   static snake
 
   static prepareMatrix() : void {
     Board.matrix = [];
-    for(var y = 1; y <= Board.SIZE; y += 1) {
+    for(var y = 1; y <= Board.LENGTH; y += 1) {
       Board.matrix[y] = []
-        for(var x = 1; x <= Board.SIZE; x += 1) {
+        for(var x = 1; x <= Board.WIDTH; x += 1) {
           Board.matrix[y][x] = new Square(x, y, document.querySelector(".square-" + x + "-" + y))
         }
     }
   }
 
   static find(x: number, y: number) : Square {
-    x = Board.transform(x)
-    y = Board.transform(y)
+    x = Board.transform(x, "WIDTH")
+    y = Board.transform(y, "LENGTH")
     return Board.matrix[y][x]
   }
 
-  static transform(x: number) : number {
+  static transform(x: number, dim: string) : number {
     if(x === 0) {
-      return Board.SIZE
+      return Board[dim]
     }
-    if(x > Board.SIZE) {
-      return x - Board.SIZE
+    if(x > Board[dim]) {
+      return x - Board[dim]
     }
     return x
   }
@@ -44,8 +45,8 @@ class Board {
 
   static random_square() : Square {
     var squares: Array<Square> = []
-    for(var y = 1; y <= Board.SIZE; y += 1) {
-      for(var x = 1; x <= Board.SIZE; x += 1) {
+    for(var y = 1; y <= Board.LENGTH; y += 1) {
+      for(var x = 1; x <= Board.WIDTH; x += 1) {
         if(Board.matrix[y] && Board.matrix[y][x]) {
           var square = Board.matrix[y][x]
           if (!square.snake) {

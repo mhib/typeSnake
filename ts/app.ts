@@ -3,6 +3,7 @@
 /// <reference path='snake.ts'/>
 /// <reference path='keyboard_handler.ts'/>
 /// <reference path='saver.ts'/>
+/// <reference path='board_generator.ts'/>
 
 function ready(fn) {
   if (document.readyState != 'loading') {
@@ -25,6 +26,15 @@ function onReady() {
   document.addEventListener('keydown', function(e) {
     KeyboardHandler.handle(Board.snake, e);
   })
+  document.getElementById("generator_form").addEventListener("submit", function(e) {
+    e.preventDefault()
+    document.getElementById("generator_form").classList.toggle("hidden")
+    let widthInput  = <HTMLInputElement>document.getElementById("width")
+    let lengthInput = <HTMLInputElement>document.getElementById("length")
+    let width = +widthInput.value
+    let length = +widthInput.value
+    BoardGenerator.generate(width, length)
+  }, false)
   setInterval(function() {
     if(!Board.snake.lost && !Board.paused) {
       Board.snake.move()

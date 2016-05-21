@@ -34,6 +34,10 @@ class KeyboardHandler {
     119: 'load'
   }
 
+  static GENERATOR = {
+    71: true
+  }
+
   static handle(snake: Snake, e: KeyboardEvent) : void {
     var kcode = +e.keyCode
     var dir
@@ -44,6 +48,8 @@ class KeyboardHandler {
       Board.togglePause()
     } else if(this.SAVER[kcode]) {
       Saver[this.SAVER[kcode]]()
+    } else if(this.GENERATOR[kcode]) {
+      document.getElementById("generator_form").classList.toggle("hidden")
     }
   }
 

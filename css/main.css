@@ -13,6 +13,19 @@ body {
   float: left;
   margin: 0; }
 
+#generator_form {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  background-color: #fff;
+  z-index: 2;
+  border: 1px solid black;
+  padding: 10px; }
+
+.hidden { display: none; }
+
 #board-container {
   position: absolute;
   left: 50%;

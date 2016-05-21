@@ -11,7 +11,7 @@ NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
 }
 
 beforeEach(function() {
-  Board.SIZE = 5;
+  Board.WIDTH = Board.LENGTH = 5;
   document.getElementById("board-container").innerHTML += ['<div id="board">',
      '<div class="row">',
         '<div class="square square-1-1" data-x="1" data-y="1">',
