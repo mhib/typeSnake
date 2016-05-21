@@ -3,11 +3,13 @@
 class Snake {
   bones: Array<Bone>
   private _direction: string
+  private _last_direction: string
   lost: boolean
   constructor(direction = 'right') {
     this.bones = []
     this.lost = false
     this._direction = direction
+    this._last_direction = direction
   }
 
   add_bone(bone: Bone) {
@@ -22,20 +24,18 @@ class Snake {
   }
 
   move() : void {
-    var eaten = false
     var n_c = this.head().new_coords()
     var new_square = Board.find(n_c["x"], n_c["y"])
     if (new_square.food) {
       new_square.unfood()
-      eaten = true
       Board.addFood()
-    }
-    if (!eaten) {
+    } else {
       this.popLast()
     }
     if (new_square.snake) {
       return this.lose()
     }
+    this._last_direction = this._direction
     new Bone(this, new_square)
   }
 
@@ -50,10 +50,10 @@ class Snake {
   }
 
   validDirection(dir: string) : boolean {
-    if (this.direction === dir) {
+    if (this._last_direction === dir) {
       return false
     }
-    if (dir === Board.OPPOSITE_DIRECTION[this._direction]) {
+    if (dir === Board.OPPOSITE_DIRECTION[this._last_direction]) {
       return false
     }
     return true
@@ -68,7 +68,7 @@ class Snake {
   }
 
   won() : boolean {
-    return this.bones.length == Board.NUMBER_OF_CELLS
+    return this.bones.length === Board.NUMBER_OF_CELLS
   }
 
   serialize() : Object {

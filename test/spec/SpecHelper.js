@@ -74,7 +74,7 @@ beforeEach(function() {
         '</div>',
       '</div>',
     '</div>'].join("\n");
-    Board.prepare_matrix();
+    Board.prepareMatrix();
 })
 
 afterEach(function() {

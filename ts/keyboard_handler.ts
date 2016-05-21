@@ -1,5 +1,6 @@
 /// <reference path='snake.ts'/>
 /// <reference path='board.ts'/>
+/// <reference path='saver.ts'/>
 class KeyboardHandler {
   static MOVEMENTS = {
       // arrows
@@ -28,6 +29,11 @@ class KeyboardHandler {
     80: true
   }
 
+  static SAVER = {
+    118: 'save',
+    119: 'load'
+  }
+
   static handle(snake: Snake, e: KeyboardEvent) : void {
     var kcode = +e.keyCode
     var dir
@@ -36,6 +42,8 @@ class KeyboardHandler {
       e.preventDefault()
     } else if(this.PAUSE[kcode]) {
       Board.togglePause()
+    } else if(this.SAVER[kcode]) {
+      Saver[this.SAVER[kcode]]()
     }
   }
 
