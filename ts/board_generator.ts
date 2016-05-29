@@ -2,15 +2,15 @@
 /// <reference path='bone.ts'/>
 /// <reference path='snake.ts'/>
 class BoardGenerator {
-  static generate(width: number, length: number) : void {
+  static generate(width: number, height: number) : void {
     var prevPause = Board.paused
-    BoardGenerator.prepareBoard(width, length)
+    BoardGenerator.prepareBoard(width, height)
     var boardC = document.getElementById("board-container")
     boardC.innerHTML = ""
     var boardDiv = document.createElement("div")
     boardDiv.setAttribute("id", "board")
     boardC.appendChild(boardDiv)
-    for(var y = 1; y <= length; y += 1) {
+    for(var y = 1; y <= height; y += 1) {
       var row = document.createElement("div")
       row.setAttribute("class", "row")
       for(var x = 1; x <= width; x += 1) {
@@ -19,6 +19,9 @@ class BoardGenerator {
       boardDiv.appendChild(row)
     }
     Board.prepareMatrix()
+    var board_div = document.getElementById("board")
+    board_div.style.height = height * 12 + "px"
+    board_div.style.width = width * 12 + "px"
     Board.paused = prevPause
     BoardGenerator.addSnake()
   }
@@ -31,11 +34,11 @@ class BoardGenerator {
     return square
   }
 
-  static prepareBoard(width: number, length: number) : void {
+  static prepareBoard(width: number, height: number) : void {
     Board.paused = true
     Board.WIDTH = width
-    Board.LENGTH = length
-    Board.NUMBER_OF_CELLS = width * length
+    Board.LENGTH = height
+    Board.NUMBER_OF_CELLS = width * height
   }
 
   static addSnake() : void {

@@ -29,8 +29,9 @@ body {
 #board-container {
   position: absolute;
   left: 50%;
-  transform: translate(-50%, 0);
-  -webkit-transform: translate(-50%, 0); }
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%); }
 
 #board {
   width: 600px;

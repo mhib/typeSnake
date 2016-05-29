@@ -29,10 +29,8 @@ function onReady() {
   document.getElementById("generator_form").addEventListener("submit", function(e) {
     e.preventDefault()
     document.getElementById("generator_form").classList.toggle("hidden")
-    let widthInput  = <HTMLInputElement>document.getElementById("width")
-    let lengthInput = <HTMLInputElement>document.getElementById("length")
-    let width = +widthInput.value
-    let length = +widthInput.value
+    let width  = +(<HTMLInputElement>document.getElementById("width")).value
+    let length = +(<HTMLInputElement>document.getElementById("length")).value
     BoardGenerator.generate(width, length)
   }, false)
   setInterval(function() {
