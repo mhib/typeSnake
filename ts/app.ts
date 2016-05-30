@@ -14,15 +14,8 @@ function ready(fn) {
 }
 
 function onReady() {
-  Board.snake = new Snake
-  Board.prepareMatrix()
-  new Bone(Board.snake, Board.find(20, 20))
-  new Bone(Board.snake, Board.find(21, 20))
-  new Bone(Board.snake, Board.find(22, 20))
-  new Bone(Board.snake, Board.find(23, 20))
-  new Bone(Board.snake, Board.find(24, 20))
-  new Bone(Board.snake, Board.find(25, 20))
-  Board.addFood()
+  Board.paused = false
+  BoardGenerator.generate(50, 50)
   document.addEventListener('keydown', function(e) {
     KeyboardHandler.handle(Board.snake, e);
   })
