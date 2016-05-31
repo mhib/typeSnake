@@ -15,7 +15,7 @@ class Bone {
     this.snake = snake
     this.square = square
     this.square.bone()
-    this.snake.add_bone(this)
+    this.snake.addBone(this)
     this.square.head()
   }
 
@@ -23,7 +23,7 @@ class Bone {
     return this.square.coords()
   }
 
-  new_coords(direction = this.snake.direction) {
+  newCoords(direction = this.snake.direction) {
     var dest = Bone.MOVES[direction]
     return {
       x: this.square.x + dest['x'],

@@ -20,7 +20,7 @@ class Saver {
     localStorage.removeItem("save_board")
     Board.LENGTH = +localStorage["board_length"]
     Board.WIDTH = +localStorage["board_width"]
-    Board.NUMBER_OF_CELLS = Board.WIDTH * Board.LENGTH
+    Board.NUMBER_OF_SQUARES = Board.WIDTH * Board.LENGTH
     Board.prepareMatrix()
     Board.refreshFood()
     Board.snake = Snake.loadFromMap(JSON.parse(localStorage["save_snake"]))

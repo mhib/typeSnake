@@ -12,7 +12,7 @@ class Snake {
     this._last_direction = direction
   }
 
-  add_bone(bone: Bone) {
+  addBone(bone: Bone) : void {
     if (this.head()) {
       this.head().unhead()
     }
@@ -24,8 +24,7 @@ class Snake {
   }
 
   move() : void {
-    var n_c = this.head().new_coords()
-    var new_square = Board.find(n_c["x"], n_c["y"])
+    var new_square = Board.findByCoords(this.head().newCoords())
     if (new_square.food) {
       new_square.unfood()
       Board.addFood()
@@ -68,7 +67,7 @@ class Snake {
   }
 
   won() : boolean {
-    return this.bones.length === Board.NUMBER_OF_CELLS
+    return this.bones.length === Board.NUMBER_OF_SQUARES
   }
 
   serialize() : Object {
@@ -82,8 +81,8 @@ class Snake {
   static loadFromMap(map: Object) : Snake {
     var snake = new Snake(map["direction"])
     snake.lost = map["lost"]
-    map["bones"].reverse().forEach(function(bone) {
-      new Bone(snake, Board.find(bone['x'], bone['y']))
+    map["bones"].reverse().forEach(function(coords) {
+      new Bone(snake, Board.findByCoords(coords))
     })
     return snake
   }

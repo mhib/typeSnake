@@ -1,4 +1,5 @@
 /// <reference path='square.ts'/>
+/// <reference path='snake.ts'/>
 class Board {
   static OPPOSITE_DIRECTION =  {
     left: 'right',
@@ -8,10 +9,10 @@ class Board {
   }
   static WIDTH = 50;
   static LENGTH = 50;
-  static NUMBER_OF_CELLS = Board.WIDTH * Board.LENGTH
+  static NUMBER_OF_SQUARES = Board.WIDTH * Board.LENGTH
   static matrix: Array<Array<Square>>
   static paused = false
-  static snake
+  static snake : Snake
 
   static prepareMatrix() : void {
     Board.matrix = [];
@@ -29,6 +30,10 @@ class Board {
     return Board.matrix[y][x]
   }
 
+  static findByCoords(coords: Object) : Square {
+    return Board.find(coords["x"], coords["y"])
+  }
+
   static transform(x: number, dim: string) : number {
     if(x === 0) {
       return Board[dim]
@@ -39,11 +44,7 @@ class Board {
     return x
   }
 
-  static part_of_snake(x: number, y: number) : boolean {
-    return Board.find(x, y).snake
-  }
-
-  static random_square() : Square {
+  static randomSquare() : Square {
     var squares: Array<Square> = []
     for(var y = 1; y <= Board.LENGTH; y += 1) {
       for(var x = 1; x <= Board.WIDTH; x += 1) {
@@ -59,7 +60,7 @@ class Board {
   }
 
   static addFood() : void {
-    var square: Square = Board.random_square();
+    var square: Square = Board.randomSquare();
     if (square) {
       square.makeFood()
     }

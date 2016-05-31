@@ -38,12 +38,12 @@ class BoardGenerator {
     Board.paused = true
     Board.WIDTH = width
     Board.LENGTH = height
-    Board.NUMBER_OF_CELLS = width * height
+    Board.NUMBER_OF_SQUARES = width * height
   }
 
   static addSnake() : void {
     Board.snake = new Snake
-    var r_s = Board.random_square()
+    var r_s = Board.randomSquare()
     new Bone(Board.snake, r_s)
     new Bone(Board.snake, Board.find(r_s.x + 1, r_s.y))
     Board.addFood()
