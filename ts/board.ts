@@ -50,7 +50,7 @@ class Board {
       for(var x = 1; x <= Board.WIDTH; x += 1) {
         if(Board.matrix[y] && Board.matrix[y][x]) {
           var square = Board.matrix[y][x]
-          if (!square.snake) {
+          if (!square.is_snake) {
             squares.push(square)
           }
         }

@@ -11,7 +11,7 @@ describe("Bone", function() {
       it("assigns values", function() {
         expect(snake.bones[0]).toBe(bone)
         expect(bone.isHead()).toBe(true)
-        expect(bone.square.snake).toBe(true)
+        expect(Board.findByCoords(bone.coords()).is_snake).toBe(true)
       })
     })
 
@@ -31,6 +31,16 @@ describe("Bone", function() {
       expect(b.isHead()).toBe(true)
       new Bone(snake, Board.find(1, 2))
       expect(b.isHead()).toBe(false)
+    })
+  })
+
+  describe("unbone", function() {
+    it("set squares is_snake to false", function() {
+      var s = new Snake
+      var b = new Bone(snake, Board.find(1, 1))
+      expect(Board.findByCoords(b.coords()).is_snake).toBe(true)
+      b.unbone()
+      expect(Board.findByCoords(b.coords()).is_snake).toBe(false)
     })
   })
 })

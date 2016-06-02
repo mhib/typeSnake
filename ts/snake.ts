@@ -31,7 +31,7 @@ class Snake {
     } else {
       this.popLast()
     }
-    if (new_square.snake) {
+    if (new_square.is_snake) {
       return this.lose()
     }
     this._last_direction = this._direction

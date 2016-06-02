@@ -20,12 +20,12 @@ describe("Square", function() {
       square.unbone()
       expect(d.classList.contains("bone")).toBe(false)
     })
-    it("changes snake attribute", function() {
-      expect(square.snake).toBe(false)
+    it("changes is_snake attribute", function() {
+      expect(square.is_snake).toBe(false)
       square.bone()
-      expect(square.snake).toBe(true)
+      expect(square.is_snake).toBe(true)
       square.unbone()
-      expect(square.snake).toBe(false)
+      expect(square.is_snake).toBe(false)
     })
   })
 
