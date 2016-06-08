@@ -37,11 +37,4 @@ class Square {
     this.food = false
   }
 
-  head() : void {
-    this.div.classList.add("head")
-  }
-
-  unhead() :void {
-    this.div.classList.remove("head")
-  }
 }

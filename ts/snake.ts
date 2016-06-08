@@ -16,6 +16,7 @@ class Snake {
     if (this.head()) {
       this.head().unhead()
     }
+    bone.head()
     this.bones.unshift(bone)
   }
 
@@ -24,7 +25,7 @@ class Snake {
   }
 
   move() : void {
-    var new_square = Board.findByCoords(this.head().newCoords())
+    var new_square = Board.findByCoords(this.head().newCoords(this.direction))
     if (new_square.food) {
       new_square.unfood()
       Board.addFood()
@@ -35,7 +36,7 @@ class Snake {
       return this.lose()
     }
     this._last_direction = this._direction
-    new Bone(this, new_square)
+    this.addBone(new Bone(new_square))
   }
 
   set direction(dir: string) {
@@ -78,12 +79,17 @@ class Snake {
     }
   }
 
+  isHead(bone: Bone) : boolean {
+    return this.head() === bone
+  }
+
   static loadFromMap(map: Object) : Snake {
     var snake = new Snake(map["direction"])
     snake.lost = map["lost"]
     map["bones"].reverse().forEach(function(coords) {
-      new Bone(snake, Board.findByCoords(coords))
+      snake.addBone(new Bone(Board.findByCoords(coords)))
     })
     return snake
   }
+
 }

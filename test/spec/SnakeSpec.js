@@ -33,8 +33,10 @@ describe("Snake", function() {
     describe("no lost", function() {
       describe("eat", function() {
         it("moves and eats square", function() {
-          var b = new Bone(snake, Board.find(1, 1))
-          var sb = new Bone(snake, Board.find(2, 1))
+          var b = new Bone(Board.find(1, 1))
+          snake.addBone(b)
+          var sb = new Bone(Board.find(2, 1))
+          snake.addBone(sb)
           Board.find(3, 1).makeFood()
           spyOn(b, "unbone")
           snake.move()
@@ -45,8 +47,10 @@ describe("Snake", function() {
 
       describe("no eat", function() {
         it("moves", function() {
-          var b = new Bone(snake, Board.find(1, 1))
-          var sb = new Bone(snake, Board.find(2, 1))
+          var b = new Bone(Board.find(1, 1))
+          snake.addBone(b)
+          var sb = new Bone(Board.find(2, 1))
+          snake.addBone(sb)
           Board.find(4, 1).makeFood()
           spyOn(b, "unbone")
           snake.move()
@@ -57,7 +61,7 @@ describe("Snake", function() {
         describe("has same length as board", function() {
           it("does not lose", function() {
             snake.direction = 'right'
-            for(var n = 1; n <= 5; n += 1) { new Bone(snake, Board.find(n, 1)) }
+            for(var n = 1; n <= 5; n += 1) { snake.addBone(new Bone(Board.find(n, 1))) }
             snake.move()
             expect(snake.lost).toBe(false)
           })
@@ -67,7 +71,7 @@ describe("Snake", function() {
 
     describe("lost", function() {
       it("loses", function() {
-        for(var n = 3; n >= 1; n -= 1) { new Bone(snake, Board.find(n, 1)) }
+        for(var n = 3; n >= 1; n -= 1) { snake.addBone(new Bone(Board.find(n, 1))) }
         snake.move()
         expect(snake.lost).toBe(true)
       })

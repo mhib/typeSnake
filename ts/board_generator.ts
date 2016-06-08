@@ -44,8 +44,8 @@ class BoardGenerator {
   static addSnake() : void {
     Board.snake = new Snake
     var r_s = Board.randomSquare()
-    new Bone(Board.snake, r_s)
-    new Bone(Board.snake, Board.find(r_s.x + 1, r_s.y))
+    Board.snake.addBone(new Bone(r_s))
+    Board.snake.addBone(new Bone(Board.find(r_s.x + 1, r_s.y)))
     Board.addFood()
   }
 }

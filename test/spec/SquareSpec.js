@@ -46,14 +46,5 @@ describe("Square", function() {
     })
   })
 
-  describe("head and unhead", function() {
-    it("adds and removes head class", function() {
-      var d = square.div
-      square.head()
-      expect(d.classList.contains("head")).toBe(true)
-      square.unhead()
-      expect(d.classList.contains("head")).toBe(false)
-    })
-  })
 
 })
